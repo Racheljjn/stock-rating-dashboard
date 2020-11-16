@@ -23,9 +23,9 @@ const handleFilter = _.debounce((inputValue, stockList, setStocks)=>{
  
  let stocks = stockList.map(item => item.description)
  let symbols = stockList.map(item => item.displaySymbol)
- const allString = [...stocks, ...symbols]
+ const allString = [...symbols]
  let fuzzyResults = fuzzy.filter(inputValue, allString, {}).map(res=> res.string)
- 
+ console.log(fuzzyResults)
  setStocks(fuzzyResults)
 
 }, 500)

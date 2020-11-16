@@ -24,7 +24,7 @@ export default function (){
    ({stockList, addStock, filteredStocks})=>(<StockGrid >
      {
        
-     filteredStocks? filteredStocks.map(des => {return<SelectableStock onClick={()=>{addStock(des)}}>{des}</SelectableStock>}) : stockList.slice(0,100).map(piece =>  {return<SelectableStock onClick={()=>{addStock(piece.description ? piece.description : piece.displaySymbol, piece.displaySymbol)}}>{piece.description} {piece.displaySymbol}</SelectableStock>})
+     filteredStocks? filteredStocks.map(des => {return<SelectableStock onClick={()=>{addStock(des,des)}}>{des}</SelectableStock>}) : stockList.slice(0,100).map(piece =>  {return<SelectableStock onClick={()=>{addStock(piece.description ? piece.description : piece.displaySymbol, piece.displaySymbol)}}>{piece.description} {piece.displaySymbol}</SelectableStock>})
      }
      
     </StockGrid>)
