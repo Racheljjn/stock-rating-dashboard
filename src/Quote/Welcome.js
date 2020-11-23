@@ -6,7 +6,7 @@ const WelcomeMsg = ({isLoggedIn}) =>{
  return (
   <AppContext.Consumer>
    {
-    ({isLoggedIn})=>!isLoggedIn? <div>Welcome to stock dashboard, please log in</div> : null
+    ({isLoggedIn})=>!isLoggedIn? <div>Welcome to stock dashboard, please search or select your favorite stocks and confirm to get recommendation dashboard for your first pick</div> : null
    }
 
 
