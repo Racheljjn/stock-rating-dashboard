@@ -15,6 +15,11 @@ export const SelectableStock = styled(StockStyle)`
  ${blackBoxShadow}
 }
 `
+
+export const DisabledStock = styled(StockStyle)`
+disabled:true;
+opacity:0.5
+`
 export const DeletableStock = styled(StockStyle)`
 &:hover{
  cursor:pointer;

@@ -1,7 +1,7 @@
 import React from 'react'
 import {AppContext} from '../App/AppProvider'
 import styled from 'styled-components'
-import {SelectableStock} from '../Shared/StockStyle'
+import {SelectableStock, DisabledStock} from '../Shared/StockStyle'
 
 
 export const StockGrid = styled.div`
@@ -21,10 +21,10 @@ margin-top:40px
 export default function (){
  return(<AppContext.Consumer>
   {
-   ({stockList, addStock, filteredStocks})=>(<StockGrid >
+   ({stockList, addStock, filteredStocks, favoriteSymbols})=>(<StockGrid >
      {
        
-     filteredStocks? filteredStocks.map(des => {return<SelectableStock onClick={()=>{addStock(des,des)}}>{des}</SelectableStock>}) : stockList.slice(0,100).map(piece =>  {return<SelectableStock onClick={()=>{addStock(piece.description ? piece.description : piece.displaySymbol, piece.displaySymbol)}}>{piece.description} {piece.displaySymbol}</SelectableStock>})
+     filteredStocks? filteredStocks.map(des => {return<SelectableStock onClick={()=>{addStock(des,des)}}>{des}</SelectableStock>}) : stockList.slice(0,100).map(piece =>  {return !favoriteSymbols.includes(piece.displaySymbol) ? <SelectableStock onClick={()=>{addStock(piece.description ? piece.description : piece.displaySymbol, piece.displaySymbol)}}>{piece.description} {piece.displaySymbol}</SelectableStock> : <DisabledStock>{piece.description} {piece.displaySymbol}</DisabledStock>})
      }
      
     </StockGrid>)

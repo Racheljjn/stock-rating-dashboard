@@ -29,7 +29,7 @@ const StockPriceGrid=()=>{
   ({favoritePrices})=>(
    <div>{
     
-   favoritePrices.length > 0 ? <ReactHighcharts config={highchartsConfig(getStockBuy(favoritePrices)[0], getStockHold(favoritePrices)[0], getStockSell(favoritePrices)[0], getStockPeriod(favoritePrices)[0], getStockSymbol(favoritePrices)[0])}/> : <div>no available data, please select another stock</div>}
+   favoritePrices ? <div>no available data, please select another stock</div> : <ReactHighcharts config={highchartsConfig(getStockBuy(favoritePrices)[0], getStockHold(favoritePrices)[0], getStockSell(favoritePrices)[0], getStockPeriod(favoritePrices)[0], getStockSymbol(favoritePrices)[0])}/>  }
 
    </div>
    )
