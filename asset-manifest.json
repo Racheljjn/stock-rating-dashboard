@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/stock-rating-dashboard/static/css/main.144e2292.chunk.css",
-    "main.js": "/stock-rating-dashboard/static/js/main.e617238d.chunk.js",
-    "main.js.map": "/stock-rating-dashboard/static/js/main.e617238d.chunk.js.map",
+    "main.css": "/stock-rating-dashboard/static/css/main.7a967324.chunk.css",
+    "main.js": "/stock-rating-dashboard/static/js/main.5159dbd2.chunk.js",
+    "main.js.map": "/stock-rating-dashboard/static/js/main.5159dbd2.chunk.js.map",
     "runtime-main.js": "/stock-rating-dashboard/static/js/runtime-main.70a5f656.js",
     "runtime-main.js.map": "/stock-rating-dashboard/static/js/runtime-main.70a5f656.js.map",
     "static/js/2.d0f678a1.chunk.js": "/stock-rating-dashboard/static/js/2.d0f678a1.chunk.js",
     "static/js/2.d0f678a1.chunk.js.map": "/stock-rating-dashboard/static/js/2.d0f678a1.chunk.js.map",
     "index.html": "/stock-rating-dashboard/index.html",
-    "static/css/main.144e2292.chunk.css.map": "/stock-rating-dashboard/static/css/main.144e2292.chunk.css.map",
+    "static/css/main.7a967324.chunk.css.map": "/stock-rating-dashboard/static/css/main.7a967324.chunk.css.map",
     "static/js/2.d0f678a1.chunk.js.LICENSE.txt": "/stock-rating-dashboard/static/js/2.d0f678a1.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.70a5f656.js",
     "static/js/2.d0f678a1.chunk.js",
-    "static/css/main.144e2292.chunk.css",
-    "static/js/main.e617238d.chunk.js"
+    "static/css/main.7a967324.chunk.css",
+    "static/js/main.5159dbd2.chunk.js"
   ]
 }
