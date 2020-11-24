@@ -13,10 +13,10 @@ export class AppProvider extends Component{
    setPage: this.setPage,
    stockList:[],
    favorites:[],
-   favoriteSymbols:[],
+   addStock:this.addStock,  
    confirmFavorites:this.confirmFavorites,
-   addStock:this.addStock,
    removeStocks:this.removeStocks,
+   favoriteSymbols:[],
    setStocks:this.setStocks,
    favoritePrices:[]
    
@@ -33,7 +33,7 @@ export class AppProvider extends Component{
 
  componentDidMount(){
   this.fetchStocks()
-  this.fetchQuotes()
+  // this.fetchQuotes()
   
  }
 
@@ -56,23 +56,27 @@ export class AppProvider extends Component{
  }
 
  async quotes(){
+   
+  //  for(let i = 0; i < favoriteSymbols.length; i++){   
    let price = []
-   let {favoriteSymbols} = this.state;
-   console.log(favoriteSymbols);
-   for(let i = 0; i < favoriteSymbols.length; i++){   
-
    try{  
-     let secondUrl = `https://finnhub.io/api/v1/stock/recommendation?symbol=${favoriteSymbols[i]}&token=bumnhe748v6scplu3d60`
+     
+     let {favoriteSymbols} = this.state;
+     console.log(favoriteSymbols[0]);
+     let secondUrl = `https://finnhub.io/api/v1/stock/recommendation?symbol=${favoriteSymbols[0]}&token=bumnhe748v6scplu3d60`
     let dataPrice = await fetch(secondUrl).then(res=>res.json()).then(data =>{return data}) 
+    
     price.push(dataPrice)
+    
     
    
   }catch(error){
     console.log('error');
   }
+  return price
 
- }
- return price
+//  }
+
 
  
 }

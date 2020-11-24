@@ -8,12 +8,12 @@ font-size:1.5em;
 const Bar = styled.div`
 padding:1.4em;
 display:grid;
-grid-template-columns:180px auto 100px 100px
+grid-template-columns:400px auto 100px 100px
 `
 const ButtonStyled = styled.div`
 cursor:pointer;
 ${props => props.active && css`
-border:2px solid #3C4F76;
+text-shadow: 2px 2px #ff0000;
 `}
 `
 
@@ -37,7 +37,7 @@ return (
 
 export default function(){
  return (<Bar>
-  <Logo>Stock Quote</Logo>
+  <Logo>Stock Recommendation</Logo>
   <div></div>
   <ControlButton name="quote"/>
   <ControlButton name="dashboard"/>

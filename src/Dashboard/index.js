@@ -5,6 +5,5 @@ import StockPriceGrid from './StockPriceGrid'
 export default function(){
  return <Page name="dashboard">
   <StockPriceGrid/>
-
  </Page>
 }

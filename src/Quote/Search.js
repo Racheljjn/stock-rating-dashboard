@@ -8,13 +8,16 @@ import _ from 'lodash'
 
 const SearchGrid = styled.div`
 display:grid;
-grid-template-columns:200px 200px
+grid-template-columns:200px 200px;
+justify-content:center
 `
 const InputStyle = styled.input`
 height:25px;
-border:2px solid white;
 place-self:center left;
-${fontSize2}
+${fontSize2};
+&:hover{
+   outline:2px solid #ccc;
+}
 `
 
 
