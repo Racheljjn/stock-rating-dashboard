@@ -8,7 +8,9 @@ ${lightbgColor};
 ${originBoxShadow};
 padding:30px;
 `
-
+export const HighlightStock = styled(StockStyle)`
+${greenBoxShadow}
+`
 export const SelectableStock = styled(StockStyle)`
 &:hover{
  cursor:pointer;

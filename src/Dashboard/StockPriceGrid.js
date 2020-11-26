@@ -6,20 +6,20 @@ import chartTheme from './ChartTheme'
 ReactHighcharts.Highcharts.setOptions(chartTheme)
 
 
-function getStockBuy (favoritePrices){
- return favoritePrices.slice(0, 4).map(price => price.buy)
+function getStockBuy (currentRec){
+ return currentRec.slice(0, 4).map(price => price.buy)
 }
-function getStockHold (favoritePrices){
- return favoritePrices.slice(0, 4).map(price => price.hold)
+function getStockHold (currentRec){
+ return currentRec.slice(0, 4).map(price => price.hold)
 }
-function getStockSell (favoritePrices){
- return favoritePrices.slice(0, 4).map(price => price.sell)
+function getStockSell (currentRec){
+ return currentRec.slice(0, 4).map(price => price.sell)
 }
-function getStockPeriod (favoritePrices){
- return favoritePrices.slice(0, 4).map(price => price.period)
+function getStockPeriod (currentRec){
+ return currentRec.slice(0, 4).map(price => price.period)
 }
-function getStockSymbol(favoritePrices){
- return favoritePrices.slice(0, 1).map(price => price.symbol)
+function getStockSymbol(currentRec){
+ return currentRec.slice(0, 1).map(price => price.symbol)
 
 }
 const StockPriceGrid=()=>{
@@ -27,9 +27,15 @@ const StockPriceGrid=()=>{
   {
 
   ({favoritePrices})=>{
-    return (<div>
+    return (<div>{
 
-   <ReactHighcharts config={highchartsConfig(getStockBuy(favoritePrices), getStockHold(favoritePrices), getStockSell(favoritePrices), getStockPeriod(favoritePrices), getStockSymbol(favoritePrices))}/>
+      // favoritePrices.length > 0 ? <ReactHighcharts config={highchartsConfig(getStockBuy(favoritePrices), getStockHold(favoritePrices), getStockSell(favoritePrices), getStockPeriod(favoritePrices), getStockSymbol(favoritePrices))}/> 
+      favoritePrices.length > 0 ? 
+      <ReactHighcharts config={highchartsConfig(getStockBuy(favoritePrices), getStockHold(favoritePrices), getStockSell(favoritePrices), getStockPeriod(favoritePrices), getStockSymbol(favoritePrices))}/> : <div>no avaliable data, please select some stocks</div>
+
+      }
+
+   
   </div>)
     
 

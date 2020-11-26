@@ -2,7 +2,8 @@ import React from 'react'
 import {AppContext} from '../App/AppProvider'
 import styled from 'styled-components'
 import {SelectableStock, DisabledStock, DeletableStock} from '../Shared/StockStyle'
-import { filter } from 'lodash'
+
+
 
 
 export const StockGrid = styled.div`
@@ -50,7 +51,11 @@ export default function ({topStockSection}){
          <DeleteSym>X</DeleteSym>
         </DeleteStyle>
       </DeletableStock> 
-      : <SelectableStock onClick={()=>{addStock(stock)}}>
+
+      : favorites.includes(stock) ? <DisabledStock>
+        {stock.description ? stock.description : stock.displaySymbol}
+      </DisabledStock> :
+      <SelectableStock onClick={()=>{addStock(stock)}}>
          {stock.description ? stock.description : stock.displaySymbol}
        </SelectableStock>})   
      }

@@ -1,19 +1,19 @@
 import React from 'react'
 import Page from '../App/Page'
 import StockPriceGrid from './StockPriceGrid'
-import {AppContext} from '../App/AppProvider'
+import FavoriteStockGrid from './FavoriteStockGrid'
 
 export default function(){
 
- return <AppContext.Consumer>
-  {
-   ({favoritePrices})=>(<Page name="dashboard">
-    {
-     favoritePrices ? <StockPriceGrid/> : <div>no available data, please select another stock</div> 
-    }
+ return (
+
+   <Page name="dashboard">
+     <FavoriteStockGrid/>
+     <StockPriceGrid/>   
+   </Page>
+ )
   
- </Page>)
-  }
- </AppContext.Consumer>
+  
+ 
  
 }

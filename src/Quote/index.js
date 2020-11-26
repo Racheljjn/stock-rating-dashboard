@@ -10,9 +10,10 @@ import Search from './Search'
 export default function(){
  return<Page name="quote">
   <WelcomeMsg/>
+  <Search/>
   <Stock topStockSection="topStockSection"/>
   <ConfirmBtn/>
-  <Search/>
+  
   <Stock/>
  </Page>
 }

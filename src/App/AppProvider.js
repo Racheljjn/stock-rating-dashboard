@@ -9,16 +9,17 @@ export class AppProvider extends Component{
   super(props)
   this.state = {
    page:"quote",
-   isLoggedIn:false,
    ...this.initialPage(),
    setPage: this.setPage,
    stockList:[],
-   favorites:[],
+  //  favorites:[],
    addStock:this.addStock,  
    confirmFavorites:this.confirmFavorites,
    removeStocks:this.removeStocks,
    favoriteSymbols:[],
    setStocks:this.setStocks,
+   getStockRec:this.getStockRec,
+   currentRec:[],
    favoritePrices:[]
    
    
@@ -67,7 +68,8 @@ export class AppProvider extends Component{
    try{  
      
     let {favorites} = this.state;
-    console.log(favorites[0].displaySymbol);
+    this.setState({currentFavorite : favorites[0]})
+    console.log(favorites);
     let secondUrl = `https://finnhub.io/api/v1/stock/recommendation?symbol=${favorites[0].displaySymbol}&token=buv946748v6vrjlub4i0`
     let data = await fetch(secondUrl).then(res=>res.json()).then(data => data) 
     console.log(data);
@@ -92,12 +94,19 @@ export class AppProvider extends Component{
 
  initialPage(){
    let favoriteData = JSON.parse(localStorage.getItem('favoriteStocks'))
+   let isLoggedInStorage = JSON.parse(localStorage.getItem('isLoggedIn'))
+   console.log(favoriteData)
+   console.log(isLoggedInStorage)
    if(!favoriteData){
      return {page:'quote', isLoggedIn:false}
    }
    let {favorites} = favoriteData
-   return {favorites}
+   let {isLoggedIn} = isLoggedInStorage
+   
+
+   return {favorites,isLoggedIn}
  }
+ 
 
 
  setPage=(page)=>{
@@ -105,6 +114,7 @@ export class AppProvider extends Component{
   
  }
 
+// populate filteredStocks with search results
  setStocks=(filteredStocks)=>{
   
   this.setState({filteredStocks})
@@ -139,6 +149,23 @@ export class AppProvider extends Component{
    localStorage.setItem('favoriteStocks', JSON.stringify({
      favorites:this.state.favorites
    }))
+   localStorage.setItem('isLoggedIn', JSON.stringify({
+     isLoggedIn:this.state.isLoggedIn
+   }))
+
+ }
+
+ getStockRec= async (favoriteSymbol,currentFavorite)=>{
+   let current = []
+   try{
+
+    let secondUrl = `https://finnhub.io/api/v1/stock/recommendation?symbol=${favoriteSymbol}&token=buv946748v6vrjlub4i0`
+
+    let currentRec = await fetch(secondUrl).then(res => res.json()).then(data => data );
+    [...current] = currentRec
+    this.setState({favoritePrices : current, currentFavorite})
+
+   }catch(error){console.log('error' + error)}
 
  }
 

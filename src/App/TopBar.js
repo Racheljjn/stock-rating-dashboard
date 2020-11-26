@@ -4,6 +4,7 @@ import styled, {css} from 'styled-components'
 
 const Logo = styled.div`
 font-size:1.5em;
+margin-left:0
 `
 const Bar = styled.div`
 padding:1.4em;
@@ -37,7 +38,7 @@ return (
 
 export default function(){
  return (<Bar>
-  <Logo>Stock Recommendation</Logo>
+  <div></div>
   <div></div>
   <ControlButton name="quote"/>
   <ControlButton name="dashboard"/>

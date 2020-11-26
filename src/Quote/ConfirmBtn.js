@@ -12,13 +12,13 @@ display:inline-block;
  margin:30px auto;
 &:hover{
  cursor:pointer;
- border:2px solid black;
+ color:green;
 }
 `
 const ConfirmBtn=()=>{
  return <AppContext.Consumer>
   {
-   ({favorites, confirmFavorites})=>(favorites.length > 0? <ConfirmBtnStyle onClick={()=>confirmFavorites()}>Confirm</ConfirmBtnStyle> : null)
+   ({confirmFavorites})=>(<ConfirmBtnStyle onClick={()=>confirmFavorites()}>Confirm</ConfirmBtnStyle> )
   }
  </AppContext.Consumer>
   

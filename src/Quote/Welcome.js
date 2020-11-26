@@ -10,7 +10,7 @@ const WelcomeStyled = styled.div`
 `
 
 
-const WelcomeMsg = ({isLoggedIn}) =>{
+const WelcomeMsg = () =>{
  return (
   <AppContext.Consumer>
    {
