@@ -6,10 +6,11 @@ import {fontSize1} from '../Shared/Styles'
 
 
 const ConfirmBtnStyle = styled.div`
-display:inline-block;
+ display:flex;
+ justify-content:center;
  padding:20px;
  ${fontSize1};
- margin:30px auto;
+ margin:50px auto;
 &:hover{
  cursor:pointer;
  color:green;

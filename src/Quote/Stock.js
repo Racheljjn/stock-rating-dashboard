@@ -34,16 +34,18 @@ function getDifferentStocks(stockList,topStockSection, favorites, filteredStocks
 
 }
 
+
 function getSearchResults(filteredStocks, stockList){
   return filteredStocks || stockList.slice(0, 100)
 
 }
 
 
+
 export default function ({topStockSection}){
  return(<AppContext.Consumer>
   {
-   ({stockList, addStock, removeStocks, filteredStocks, favorites})=>(<StockGrid >
+   ({stockList, addStock, removeStocks, filteredStocks, favorites, isInFavorite})=>(<StockGrid >
      {
        getDifferentStocks(stockList,topStockSection,favorites,filteredStocks).map((stock, index) =>{return topStockSection ? <DeletableStock  onClick={()=>removeStocks(index)}>
         <DeleteStyle>

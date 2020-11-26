@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import _ from 'lodash'
 
 
 
@@ -16,11 +17,11 @@ export class AppProvider extends Component{
    addStock:this.addStock,  
    confirmFavorites:this.confirmFavorites,
    removeStocks:this.removeStocks,
-   favoriteSymbols:[],
    setStocks:this.setStocks,
    getStockRec:this.getStockRec,
    currentRec:[],
-   favoritePrices:[]
+   favoritePrices:[],
+   
    
    
 
@@ -44,6 +45,7 @@ export class AppProvider extends Component{
   const firstUrl = 'https://finnhub.io/api/v1/stock/symbol?exchange=US&token=buv946748v6vrjlub4i0'
   try{
    let stockList = await fetch(firstUrl).then(res=>res.json()).then(data => {return data})
+   console.log(stockList.slice(0,100));
    this.setState({stockList})
 
   }
@@ -63,7 +65,7 @@ export class AppProvider extends Component{
 
  async quotes(){
    
-  //  for(let i = 0; i < favoriteSymbols.length; i++){   
+  
    let price = []
    try{  
      
@@ -168,6 +170,8 @@ export class AppProvider extends Component{
    }catch(error){console.log('error' + error)}
 
  }
+
+ 
 
 
 
