@@ -1,4 +1,5 @@
-{ "homepage": "https://Racheljjn.github.io/stock-rating-dashboard",
+{
+  "homepage": "https://Racheljjn.github.io/stock-rating-dashboard",
   "name": "stockdash",
   "version": "0.1.0",
   "private": true,
@@ -6,6 +7,8 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+    "axios": "^0.21.0",
+    "firebase": "^8.1.1",
     "fuzzy": "^0.1.3",
     "gh-pages": "^3.1.0",
     "highcharts": "^8.2.2",
@@ -15,7 +18,11 @@
     "react-dom": "^16.13.1",
     "react-highcharts": "^16.1.0",
     "react-scripts": "^4.0.0",
-    "styled-components": "^5.2.0"
+    "styled-components": "^5.2.0",
+    "typescript": "^4.1.2"
+  },
+  "resolutions": {
+    "serialize-javascript": "^2.1.1"
   },
   "scripts": {
     "predeploy": "npm run build",

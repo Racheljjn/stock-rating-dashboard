@@ -1,14 +1,14 @@
 import React from 'react'
 import {AppContext} from '../App/AppProvider'
 import styled from 'styled-components'
-import {fontSizeBig} from '../Shared/Styles'
+import {fontSize1} from '../Shared/Styles'
 
 
 
 const ConfirmBtnStyle = styled.div`
 display:inline-block;
  padding:20px;
- ${fontSizeBig};
+ ${fontSize1};
  margin:30px auto;
 &:hover{
  cursor:pointer;

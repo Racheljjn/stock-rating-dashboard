@@ -23,13 +23,17 @@ ${fontSize2};
 
 
 const handleFilter = _.debounce((inputValue, stockList, setStocks)=>{
- 
- let stocks = stockList.map(item => item.description)
+ let stockNames = stockList.map(item => item.description)
  let symbols = stockList.map(item => item.displaySymbol)
- const allString = [...symbols]
+ const allString = stockNames.concat(symbols)
+//  res includes all results from search
  let fuzzyResults = fuzzy.filter(inputValue, allString, {}).map(res=> res.string)
- console.log(fuzzyResults)
- setStocks(fuzzyResults)
+ let filteredStocks = _.pickBy(stockList, (result)=>{
+    return (_.includes(fuzzyResults, result.description) || _.includes(fuzzyResults, result.displaySymbol))
+
+ })
+
+ setStocks(Object.values(filteredStocks))
 
 }, 500)
 

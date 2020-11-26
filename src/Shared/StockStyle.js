@@ -1,18 +1,18 @@
 
 import styled from 'styled-components'
-import {subtleBoxShadow, redBoxShadow, blackBoxShadow,lightbgColor} from './Styles'
+import {originBoxShadow, redBoxShadow, greenBoxShadow,lightbgColor} from './Styles'
 
 
 export const StockStyle = styled.div`
 ${lightbgColor};
-${subtleBoxShadow};
+${originBoxShadow};
 padding:30px;
 `
 
 export const SelectableStock = styled(StockStyle)`
 &:hover{
  cursor:pointer;
- ${blackBoxShadow}
+ ${greenBoxShadow}
 }
 `
 

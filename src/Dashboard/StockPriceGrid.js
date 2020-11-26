@@ -7,38 +7,36 @@ ReactHighcharts.Highcharts.setOptions(chartTheme)
 
 
 function getStockBuy (favoritePrices){
- return favoritePrices.map(arr => arr.slice(0,4).map(item => item.buy? item.buy : 'analysis not available'))
+ return favoritePrices.slice(0, 4).map(price => price.buy)
 }
 function getStockHold (favoritePrices){
- return favoritePrices.map(arr => arr.slice(0,4).map(item => item.hold? item.hold : 'analysis not available'))
+ return favoritePrices.slice(0, 4).map(price => price.hold)
 }
 function getStockSell (favoritePrices){
- return favoritePrices.map(arr => arr.slice(0,4).map(item => item.sell? item.sell : 'analysis not available'))
+ return favoritePrices.slice(0, 4).map(price => price.sell)
 }
 function getStockPeriod (favoritePrices){
- return favoritePrices.map(arr => arr.slice(0,4).map(item => item.period? item.period : 'analysis not available'))
+ return favoritePrices.slice(0, 4).map(price => price.period)
 }
 function getStockSymbol(favoritePrices){
- return favoritePrices.map(arr => arr.slice(0,1).map(item => item.symbol? item.symbol : 'analysis not available'))
+ return favoritePrices.slice(0, 1).map(price => price.symbol)
 
 }
 const StockPriceGrid=()=>{
- return <AppContext.Consumer>
+ return (<AppContext.Consumer>
   {
 
-  ({favoritePrices})=>(
-   <div>{
+  ({favoritePrices})=>{
+    return (<div>
+
+   <ReactHighcharts config={highchartsConfig(getStockBuy(favoritePrices), getStockHold(favoritePrices), getStockSell(favoritePrices), getStockPeriod(favoritePrices), getStockSymbol(favoritePrices))}/>
+  </div>)
     
-   favoritePrices ?<ReactHighcharts config={highchartsConfig(getStockBuy(favoritePrices)[0], getStockHold(favoritePrices)[0], getStockSell(favoritePrices)[0], getStockPeriod(favoritePrices)[0], getStockSymbol(favoritePrices)[0])}/>: <div>no available data, please select another stock</div>   }
 
-   </div>
-   )
-  
    
-  }
-  
- </AppContext.Consumer>
+ } }
+ </AppContext.Consumer>)}
 
-}
+
 
 export default StockPriceGrid

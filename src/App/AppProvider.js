@@ -10,6 +10,7 @@ export class AppProvider extends Component{
   this.state = {
    page:"quote",
    isLoggedIn:false,
+   ...this.initialPage(),
    setPage: this.setPage,
    stockList:[],
    favorites:[],
@@ -33,26 +34,30 @@ export class AppProvider extends Component{
 
  componentDidMount(){
   this.fetchStocks()
-  // this.fetchQuotes()
+  this.fetchQuotes()
   
  }
 
+//  fetch stock tickers from finnhub API and populate stocklist array with stock tickers
  async fetchStocks(){
-  const firstUrl = 'https://finnhub.io/api/v1/stock/symbol?exchange=US&token=bumnhe748v6scplu3d60'
+  const firstUrl = 'https://finnhub.io/api/v1/stock/symbol?exchange=US&token=buv946748v6vrjlub4i0'
   try{
-   let data = await fetch(firstUrl).then(res=>res.json()).then(data => {return data})
-   this.setState({stockList:data})
+   let stockList = await fetch(firstUrl).then(res=>res.json()).then(data => {return data})
+   this.setState({stockList})
 
   }
   catch(error){console.log('error')}  
  }
 
+
+
  async fetchQuotes(){
    
   if(this.state.isLoggedIn === false) return ;
   let quotes = await this.quotes()
-  console.log(quotes);
+  
   this.setState({favoritePrices: quotes})
+  
  }
 
  async quotes(){
@@ -61,23 +66,21 @@ export class AppProvider extends Component{
    let price = []
    try{  
      
-     let {favoriteSymbols} = this.state;
-     console.log(favoriteSymbols[0]);
-     let secondUrl = `https://finnhub.io/api/v1/stock/recommendation?symbol=${favoriteSymbols[0]}&token=bumnhe748v6scplu3d60`
-    let dataPrice = await fetch(secondUrl).then(res=>res.json()).then(data =>{return data}) 
-    
-    price.push(dataPrice)
-    
-    
+    let {favorites} = this.state;
+    console.log(favorites[0].displaySymbol);
+    let secondUrl = `https://finnhub.io/api/v1/stock/recommendation?symbol=${favorites[0].displaySymbol}&token=buv946748v6vrjlub4i0`
+    let data = await fetch(secondUrl).then(res=>res.json()).then(data => data) 
+    console.log(data);
+    [...price] = data
+  
    
   }catch(error){
     console.log('error');
   }
-  return price
 
-//  }
-
-
+ 
+    return price
+  
  
 }
 
@@ -87,6 +90,15 @@ export class AppProvider extends Component{
   functions
  *************************/
 
+ initialPage(){
+   let favoriteData = JSON.parse(localStorage.getItem('favoriteStocks'))
+   if(!favoriteData){
+     return {page:'quote', isLoggedIn:false}
+   }
+   let {favorites} = favoriteData
+   return {favorites}
+ }
+
 
  setPage=(page)=>{
   this.setState({page})
@@ -94,29 +106,25 @@ export class AppProvider extends Component{
  }
 
  setStocks=(filteredStocks)=>{
+  
   this.setState({filteredStocks})
-  // console.log(filteredStocks);
+  
 
  }
 
- addStock=(stock, symbols)=>{
+ addStock=(stock)=>{
   let favorites = [...this.state.favorites] 
-  let favoriteSymbols = [...this.state.favoriteSymbols]
-  favoriteSymbols.push(symbols)
-  if(favorites.length < maxStocks) {
-    favorites.push(stock)
-  this.setState({favorites, favoriteSymbols})
+  if(favorites.length <= maxStocks) {
+  favorites.push(stock)
+  this.setState({favorites})
   }
+
+
   
  }
 
  removeStocks=(id)=>{
   let favorites = [...this.state.favorites]
-  let favoriteSymbols = [...this.state.favoriteSymbols]
-  if(favoriteSymbols.length > 0){
-    let newSymbols = favoriteSymbols.filter((sym, index) => index !== id)
-    this.setState({favoriteSymbols:newSymbols})
-  }
   if(favorites.length > 0){
    let newFavorites = favorites.filter((item,index) => index!== id )
    this.setState({favorites: newFavorites})
@@ -128,17 +136,11 @@ export class AppProvider extends Component{
      this.fetchQuotes()
    })
 
+   localStorage.setItem('favoriteStocks', JSON.stringify({
+     favorites:this.state.favorites
+   }))
+
  }
-
- 
-
-
-
- 
-
-
-
-
 
 
 

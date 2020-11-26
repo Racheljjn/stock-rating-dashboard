@@ -2,7 +2,6 @@ import React from 'react'
 import WelcomeMsg from './Welcome'
 import Page from '../App/Page'
 import Stock from './Stock'
-import TopStock from './TopStock'
 import ConfirmBtn from './ConfirmBtn'
 import Search from './Search'
 
@@ -11,7 +10,7 @@ import Search from './Search'
 export default function(){
  return<Page name="quote">
   <WelcomeMsg/>
-  <TopStock top="top"/>
+  <Stock topStockSection="topStockSection"/>
   <ConfirmBtn/>
   <Search/>
   <Stock/>

@@ -1,30 +1,58 @@
 import React from 'react'
 import {AppContext} from '../App/AppProvider'
 import styled from 'styled-components'
-import {SelectableStock, DisabledStock} from '../Shared/StockStyle'
+import {SelectableStock, DisabledStock, DeletableStock} from '../Shared/StockStyle'
+import { filter } from 'lodash'
 
 
 export const StockGrid = styled.div`
 display:grid;
-grid-template-columns: repeat(4, 1fr);
+grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 grid-gap:15px;
 margin-top:40px
 `
 
+export const DeleteStyle = styled.div`
+display:grid;
+grid-template-columns: 2fr 1fr;
 
-// function getLowerStock(filteredStocks, stockList){
-//   let stockItems = stockList.slice(0,100).map(item=>{return item.description})
-//   return filteredStocks ? filteredStocks : stockItems
+`
+export const DeleteSym = styled.div`
+justify-self:right;
+display:none; 
+${DeletableStock}:hover &{
+  display:block;
+  color:red;
 
-// }
-// console.log(getLowerStock());
-export default function (){
+}
+`
+
+
+function getDifferentStocks(stockList,topStockSection, favorites, filteredStocks){
+  return  topStockSection ? favorites : getSearchResults(filteredStocks, stockList)
+
+}
+
+function getSearchResults(filteredStocks, stockList){
+  return filteredStocks || stockList.slice(0, 100)
+
+}
+
+
+export default function ({topStockSection}){
  return(<AppContext.Consumer>
   {
-   ({stockList, addStock, filteredStocks, favoriteSymbols})=>(<StockGrid >
+   ({stockList, addStock, removeStocks, filteredStocks, favorites})=>(<StockGrid >
      {
-       
-     filteredStocks? filteredStocks.map(des => {return<SelectableStock onClick={()=>{addStock(des,des)}}>{des}</SelectableStock>}) : stockList.slice(0,100).map(piece =>  {return !favoriteSymbols.includes(piece.displaySymbol) ? <SelectableStock onClick={()=>{addStock(piece.description ? piece.description : piece.displaySymbol, piece.displaySymbol)}}>{piece.description} {piece.displaySymbol}</SelectableStock> : <DisabledStock>{piece.description} {piece.displaySymbol}</DisabledStock>})
+       getDifferentStocks(stockList,topStockSection,favorites,filteredStocks).map((stock, index) =>{return topStockSection ? <DeletableStock  onClick={()=>removeStocks(index)}>
+        <DeleteStyle>
+         <div>{stock.description ? stock.description : stock.displaySymbol}</div>
+         <DeleteSym>X</DeleteSym>
+        </DeleteStyle>
+      </DeletableStock> 
+      : <SelectableStock onClick={()=>{addStock(stock)}}>
+         {stock.description ? stock.description : stock.displaySymbol}
+       </SelectableStock>})   
      }
      
     </StockGrid>)
