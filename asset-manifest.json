@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/stock-rating-dashboard/static/css/main.7a967324.chunk.css",
-    "main.js": "/stock-rating-dashboard/static/js/main.583e4699.chunk.js",
-    "main.js.map": "/stock-rating-dashboard/static/js/main.583e4699.chunk.js.map",
+    "main.js": "/stock-rating-dashboard/static/js/main.6a9fb122.chunk.js",
+    "main.js.map": "/stock-rating-dashboard/static/js/main.6a9fb122.chunk.js.map",
     "runtime-main.js": "/stock-rating-dashboard/static/js/runtime-main.70a5f656.js",
     "runtime-main.js.map": "/stock-rating-dashboard/static/js/runtime-main.70a5f656.js.map",
     "static/js/2.966710e3.chunk.js": "/stock-rating-dashboard/static/js/2.966710e3.chunk.js",
@@ -15,6 +15,6 @@
     "static/js/runtime-main.70a5f656.js",
     "static/js/2.966710e3.chunk.js",
     "static/css/main.7a967324.chunk.css",
-    "static/js/main.583e4699.chunk.js"
+    "static/js/main.6a9fb122.chunk.js"
   ]
 }
