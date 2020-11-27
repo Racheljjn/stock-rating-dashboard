@@ -16,9 +16,10 @@ margin:40px 0;
 export default function(){
  return <AppContext.Consumer>
   {
-   ({favorites, getStockRec, currentFavorite})=>(
+   ({favorites, getStockRec, currentFavorite, isLoggedIn})=>(
     <FavoriteStyle>
     {
+    !isLoggedIn ? <div>Please confirm first</div> :
     favorites.map(current => {return current === currentFavorite ? <HighlightStock>
      {current.description ? current.description : current.displaySymbol}
     </HighlightStock>

@@ -10,10 +10,11 @@ export class AppProvider extends Component{
   super(props)
   this.state = {
    page:"quote",
+   favorites:[],
+   isLoggedIn:false,
    ...this.initialPage(),
    setPage: this.setPage,
    stockList:[],
-  //  favorites:[],
    addStock:this.addStock,  
    confirmFavorites:this.confirmFavorites,
    removeStocks:this.removeStocks,
@@ -94,9 +95,9 @@ export class AppProvider extends Component{
 
  initialPage(){
    let favoriteData = JSON.parse(localStorage.getItem('favoriteStocks'))
-   console.log(favoriteData)
    
-   if(favoriteData.favorites.length < 0){
+   
+   if(!favoriteData){
      return {page:'quote', isLoggedIn:false}
    }
    let {favorites} = favoriteData

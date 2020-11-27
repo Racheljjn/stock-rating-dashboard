@@ -27,13 +27,16 @@ const StockPriceGrid=()=>{
   {
 
   ({favoritePrices, isLoggedIn, favorites})=>{
+    console.log(isLoggedIn);
       
-    if(!isLoggedIn || !favorites.length){
+    if(isLoggedIn && !favorites.length){
       return <div>please select some stocks first </div>
     }
 
     return favoritePrices.length > 0 ? 
-      <ReactHighcharts config={highchartsConfig(getStockBuy(favoritePrices), getStockHold(favoritePrices), getStockSell(favoritePrices), getStockPeriod(favoritePrices), getStockSymbol(favoritePrices))}/> : <div>no avaliable data for this stock, please check others</div>
+      <ReactHighcharts config={highchartsConfig(getStockBuy(favoritePrices), getStockHold(favoritePrices), getStockSell(favoritePrices), getStockPeriod(favoritePrices), getStockSymbol(favoritePrices))}/> : 
+      isLoggedIn ? 
+      <div>no avaliable data for this stock, please check others</div> : null
 
     // else if(favoritePrices.length !== 0){
     //   <ReactHighcharts config={highchartsConfig(getStockBuy(favoritePrices), getStockHold(favoritePrices), getStockSell(favoritePrices), getStockPeriod(favoritePrices), getStockSymbol(favoritePrices))}/>}

@@ -30,7 +30,7 @@ ${DeletableStock}:hover &{
 
 
 function getDifferentStocks(stockList,topStockSection,favorites, filteredStocks){
-  return  topStockSection ? favorites : getSearchResults(filteredStocks, stockList)
+  return  topStockSection ? favorites || [] : getSearchResults(filteredStocks, stockList)
 
 }
 
@@ -57,7 +57,7 @@ export default function ({topStockSection}){
         </DeleteStyle>
       </DeletableStock> 
 
-      : favorites.find(item => item.displaySymbol === stock.displaySymbol) ? <DisabledStock>
+      : (favorites && favorites.find(item => item.displaySymbol === stock.displaySymbol)) ? <DisabledStock>
         {stock.description ? stock.description : stock.displaySymbol}
       </DisabledStock> :
       <SelectableStock onClick={()=>{addStock(stock)}}>
