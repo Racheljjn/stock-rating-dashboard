@@ -11,7 +11,9 @@ grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 grid-gap:15px;
 margin:40px 0;
 `
-
+export const ErrorStyle = styled.div`
+font-size:2em;
+`
 
 export default function(){
  return <AppContext.Consumer>
@@ -19,7 +21,7 @@ export default function(){
    ({favorites, getStockRec, currentFavorite, isLoggedIn})=>(
     <FavoriteStyle>
     {
-    !isLoggedIn ? <div>Please confirm first</div> :
+    !isLoggedIn ? null :
     favorites.map(current => {return current === currentFavorite ? <HighlightStock>
      {current.description ? current.description : current.displaySymbol}
     </HighlightStock>
