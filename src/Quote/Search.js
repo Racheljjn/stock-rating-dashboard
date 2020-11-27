@@ -9,7 +9,8 @@ import _ from 'lodash'
 const SearchGrid = styled.div`
 display:grid;
 grid-template-columns:200px 200px;
-justify-content:center
+justify-content:center;
+margin-bottom:70px
 `
 const InputStyle = styled.input`
 height:25px;

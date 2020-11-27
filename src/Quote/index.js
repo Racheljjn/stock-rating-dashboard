@@ -9,8 +9,9 @@ import Search from './Search'
 // if page is equal to name here, display welcome msg
 export default function(){
  return<Page name="quote">
-  <WelcomeMsg/>
+  
   <Search/>
+  <WelcomeMsg/>
   <Stock topStockSection="topStockSection"/>
   <ConfirmBtn/>
   

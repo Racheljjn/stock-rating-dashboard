@@ -29,7 +29,7 @@ ${DeletableStock}:hover &{
 `
 
 
-function getDifferentStocks(stockList,topStockSection, favorites, filteredStocks){
+function getDifferentStocks(stockList,topStockSection,favorites, filteredStocks){
   return  topStockSection ? favorites : getSearchResults(filteredStocks, stockList)
 
 }
@@ -45,8 +45,11 @@ function getSearchResults(filteredStocks, stockList){
 export default function ({topStockSection}){
  return(<AppContext.Consumer>
   {
-   ({stockList, addStock, removeStocks, filteredStocks, favorites, isInFavorite})=>(<StockGrid >
+   ({stockList, addStock, removeStocks, filteredStocks, favorites})=>(
+   
+   <StockGrid >
      {
+       
        getDifferentStocks(stockList,topStockSection,favorites,filteredStocks).map((stock, index) =>{return topStockSection ? <DeletableStock  onClick={()=>removeStocks(index)}>
         <DeleteStyle>
          <div>{stock.description ? stock.description : stock.displaySymbol}</div>
@@ -54,7 +57,7 @@ export default function ({topStockSection}){
         </DeleteStyle>
       </DeletableStock> 
 
-      : favorites.includes(stock) ? <DisabledStock>
+      : favorites.find(item => item.displaySymbol === stock.displaySymbol) ? <DisabledStock>
         {stock.description ? stock.description : stock.displaySymbol}
       </DisabledStock> :
       <SelectableStock onClick={()=>{addStock(stock)}}>

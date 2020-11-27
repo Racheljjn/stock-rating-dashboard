@@ -45,7 +45,6 @@ export class AppProvider extends Component{
   const firstUrl = 'https://finnhub.io/api/v1/stock/symbol?exchange=US&token=buv946748v6vrjlub4i0'
   try{
    let stockList = await fetch(firstUrl).then(res=>res.json()).then(data => {return data})
-   console.log(stockList.slice(0,100));
    this.setState({stockList})
 
   }
@@ -73,8 +72,7 @@ export class AppProvider extends Component{
     this.setState({currentFavorite : favorites[0]})
     console.log(favorites);
     let secondUrl = `https://finnhub.io/api/v1/stock/recommendation?symbol=${favorites[0].displaySymbol}&token=buv946748v6vrjlub4i0`
-    let data = await fetch(secondUrl).then(res=>res.json()).then(data => data) 
-    console.log(data);
+    let data = await fetch(secondUrl).then(res=>res.json()).then(data => data);
     [...price] = data
   
    
@@ -96,17 +94,15 @@ export class AppProvider extends Component{
 
  initialPage(){
    let favoriteData = JSON.parse(localStorage.getItem('favoriteStocks'))
-   let isLoggedInStorage = JSON.parse(localStorage.getItem('isLoggedIn'))
    console.log(favoriteData)
-   console.log(isLoggedInStorage)
-   if(!favoriteData){
+   
+   if(favoriteData.favorites.length < 0){
      return {page:'quote', isLoggedIn:false}
    }
    let {favorites} = favoriteData
-   let {isLoggedIn} = isLoggedInStorage
-   
 
-   return {favorites,isLoggedIn}
+
+   return {favorites}
  }
  
 
@@ -151,13 +147,12 @@ export class AppProvider extends Component{
    localStorage.setItem('favoriteStocks', JSON.stringify({
      favorites:this.state.favorites
    }))
-   localStorage.setItem('isLoggedIn', JSON.stringify({
-     isLoggedIn:this.state.isLoggedIn
-   }))
+   
 
  }
 
  getStockRec= async (favoriteSymbol,currentFavorite)=>{
+   if(this.state.isLoggedIn === false) return;
    let current = []
    try{
 
@@ -166,6 +161,7 @@ export class AppProvider extends Component{
     let currentRec = await fetch(secondUrl).then(res => res.json()).then(data => data );
     [...current] = currentRec
     this.setState({favoritePrices : current, currentFavorite})
+    console.log(this.state.favoritePrices);
 
    }catch(error){console.log('error' + error)}
 

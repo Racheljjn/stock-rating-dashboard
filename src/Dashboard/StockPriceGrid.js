@@ -26,22 +26,27 @@ const StockPriceGrid=()=>{
  return (<AppContext.Consumer>
   {
 
-  ({favoritePrices})=>{
-    return (<div>{
+  ({favoritePrices, isLoggedIn, favorites})=>{
+      
+    if(!isLoggedIn || !favorites.length){
+      return <div>please select some stocks first </div>
+    }
 
-      // favoritePrices.length > 0 ? <ReactHighcharts config={highchartsConfig(getStockBuy(favoritePrices), getStockHold(favoritePrices), getStockSell(favoritePrices), getStockPeriod(favoritePrices), getStockSymbol(favoritePrices))}/> 
-      favoritePrices.length > 0 ? 
-      <ReactHighcharts config={highchartsConfig(getStockBuy(favoritePrices), getStockHold(favoritePrices), getStockSell(favoritePrices), getStockPeriod(favoritePrices), getStockSymbol(favoritePrices))}/> : <div>no avaliable data, please select some stocks</div>
+    return favoritePrices.length > 0 ? 
+      <ReactHighcharts config={highchartsConfig(getStockBuy(favoritePrices), getStockHold(favoritePrices), getStockSell(favoritePrices), getStockPeriod(favoritePrices), getStockSymbol(favoritePrices))}/> : <div>no avaliable data for this stock, please check others</div>
 
-      }
-
-   
-  </div>)
+    // else if(favoritePrices.length !== 0){
+    //   <ReactHighcharts config={highchartsConfig(getStockBuy(favoritePrices), getStockHold(favoritePrices), getStockSell(favoritePrices), getStockPeriod(favoritePrices), getStockSymbol(favoritePrices))}/>}
+      
+    
+    
+  }
     
 
    
- } }
- </AppContext.Consumer>)}
+ }
+ </AppContext.Consumer>)
+ }
 
 
 
